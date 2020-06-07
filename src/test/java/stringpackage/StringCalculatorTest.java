@@ -6,6 +6,7 @@ import org.junit.jupiter.api.function.Executable;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 
 class StringCalculatorTest {
@@ -74,6 +75,11 @@ class StringCalculatorTest {
     @Test
     void testwithGreaterthan1000() {
         assertEquals(2, stringCalculator.Add("2,1001"));
+    }
+
+    @AfterAll
+    static void testwithGetMethodCount() {
+        System.out.println(stringCalculator.GetCalledCount());
     }
 
 }

@@ -3,11 +3,13 @@ package stringpackage;
 public final class StringCalculator {
 
     private static final String NEGATIVE_EXCEPTION = "negatives not allowed";
+    private static int involedMethod = 0;
 
     public int Add(String testString) {
         int count = 0;
         int negativeCount = 0;
         int LengthofString = testString.length();
+        involedMethod += 1;
 
         if (LengthofString == 0) {
             return LengthofString;
@@ -49,5 +51,9 @@ public final class StringCalculator {
         }
 
         return count;
+    }
+
+    public int GetCalledCount() {
+        return involedMethod;
     }
 }
