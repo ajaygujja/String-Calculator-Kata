@@ -5,6 +5,8 @@ public final class StringCalculator {
     private static final String DEFAULT_DELIMITER = ",";
     private static final String DELIMITER_PREFIX = "/";
     private static final String DELIMITER_SUFFIX = "\n";
+    private static final String DELIMITER_CLOSED_BRACKET = "]";
+    private static final char DELIMITER_OPEN_BRACKET = '[';
     private static final String NEGATIVE_EXCEPTION = "negatives not allowed";
     private static int involedMethod = 0;
 
@@ -22,21 +24,41 @@ public final class StringCalculator {
 
         if (testString.startsWith("/")) {
             /*
-             * @param Delimiter: Stores the delimiter in a string
+             * @param Delimiter holds the delimiter value in a string
              *
-             * @param New_String: stores the new string which doesnt have a Delimiter
+             * @param New_String holds the new string which doesnt have a Delimiter
              */
             int customDelimiterStart = testString.lastIndexOf(DELIMITER_PREFIX) + 1;
             int customDelimiterEnd = testString.indexOf(DELIMITER_SUFFIX);
-            String Delimiter = testString.substring(customDelimiterStart, customDelimiterEnd);
 
-            if (testString.contains("[")) {
-                Delimiter = testString.substring(customDelimiterStart + 1, testString.indexOf("]"));
+            if (testString.contains(String.valueOf(DELIMITER_OPEN_BRACKET))) {
+                /*
+                 * if the Delimter is in this Format “//[delimiter]\n”
+                 */
+                int closedBracket = testString.indexOf(DELIMITER_CLOSED_BRACKET);
+                int openedBracket = closedBracket + 1;
 
+                String Delimiter = testString.substring(customDelimiterStart + 1, closedBracket);
+                String New_String = testString.substring(customDelimiterEnd + 1).replace(Delimiter, DEFAULT_DELIMITER);
+
+                if (testString.charAt(closedBracket + 1) == DELIMITER_OPEN_BRACKET) {
+                    /*
+                     * If there is a Multiple Delimiter like this “//[delim1][delim2]\n”
+                     * 
+                     * @param Delimter_2 holds the Second Delimiter Value
+                     */
+                    String Delimiter_2 = testString.substring(openedBracket + 1, customDelimiterEnd - 1);
+                    New_String = New_String.replace(Delimiter_2, DEFAULT_DELIMITER);
+                }
+
+                testString = testString.replace(testString, New_String);
+
+            } else {
+                String Delimiter = testString.substring(customDelimiterStart, customDelimiterEnd);
+                String New_String = testString.substring(customDelimiterEnd + 1).replace(Delimiter, DEFAULT_DELIMITER);
+                testString = testString.replace(testString, New_String);
             }
 
-            String New_String = testString.substring(customDelimiterEnd + 1).replace(Delimiter, DEFAULT_DELIMITER);
-            testString = testString.replace(testString, New_String);
         }
 
         String[] part = testString.split("[\n,]");

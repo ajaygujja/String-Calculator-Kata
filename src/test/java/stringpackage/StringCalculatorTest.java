@@ -94,4 +94,15 @@ class StringCalculatorTest {
         assertEquals(6, stringCalculator.Add("//[**]\n1**2**3"));
     }
 
+    @Test
+    void testwithMultipleCustomDelimiter() {
+        assertEquals(6, stringCalculator.Add("//[#][*]\n1#2*3"));
+    }
+
+    @Test
+    void testwithMultipleCustomDelimiter_HandleLargerNumber() {
+        assertEquals(6, stringCalculator.Add("//[;;;][***]\n1;;;2***3"));
+        assertEquals(6, stringCalculator.Add("//[**][%%]\n1**2%%3"));
+    }
+
 }
