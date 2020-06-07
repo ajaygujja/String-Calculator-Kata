@@ -75,6 +75,7 @@ class StringCalculatorTest {
     @Test
     void testwithGreaterthan1000() {
         assertEquals(2, stringCalculator.Add("2,1001"));
+        assertEquals(8, stringCalculator.Add("1001,8"));
     }
 
     @AfterAll
@@ -91,12 +92,13 @@ class StringCalculatorTest {
     @Test
     void testwithCustomDelimiter() {
         assertEquals(6, stringCalculator.Add("//[###]\n1###2###3"));
-        assertEquals(6, stringCalculator.Add("//[**]\n1**2**3"));
+        assertEquals(8, stringCalculator.Add("//[**]\n3**2**3"));
     }
 
     @Test
     void testwithMultipleCustomDelimiter() {
         assertEquals(6, stringCalculator.Add("//[#][*]\n1#2*3"));
+        assertEquals(10, stringCalculator.Add("//[;][$]\n5;2$3"));
     }
 
     @Test

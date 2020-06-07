@@ -14,10 +14,13 @@ public final class StringCalculator {
         int count = 0;
         int negativeCount = 0;
         int LengthofString = testString.length();
+
+        // Every Time Add method get called, It get Incremented
         involedMethod += 1;
 
         if (LengthofString == 0) {
             return LengthofString;
+
         } else if (LengthofString == 1) {
             return Integer.parseInt(testString);
         }
@@ -26,10 +29,14 @@ public final class StringCalculator {
             /*
              * @param Delimiter holds the delimiter value in a string
              *
-             * @param New_String holds the new string which doesnt have a Delimiter
+             * @param New_String holds the new string which doesnt have a Delimiter by
+             * Replacing the Delimiter with the Default DeLimiter(",")
              */
             int customDelimiterStart = testString.lastIndexOf(DELIMITER_PREFIX) + 1;
             int customDelimiterEnd = testString.indexOf(DELIMITER_SUFFIX);
+
+            String Delimiter = testString.substring(customDelimiterStart, customDelimiterEnd);
+            String New_String = testString.substring(customDelimiterEnd + 1).replace(Delimiter, DEFAULT_DELIMITER);
 
             if (testString.contains(String.valueOf(DELIMITER_OPEN_BRACKET))) {
                 /*
@@ -38,13 +45,13 @@ public final class StringCalculator {
                 int closedBracket = testString.indexOf(DELIMITER_CLOSED_BRACKET);
                 int openedBracket = closedBracket + 1;
 
-                String Delimiter = testString.substring(customDelimiterStart + 1, closedBracket);
-                String New_String = testString.substring(customDelimiterEnd + 1).replace(Delimiter, DEFAULT_DELIMITER);
+                Delimiter = testString.substring(customDelimiterStart + 1, closedBracket);
+                New_String = testString.substring(customDelimiterEnd + 1).replace(Delimiter, DEFAULT_DELIMITER);
 
                 if (testString.charAt(closedBracket + 1) == DELIMITER_OPEN_BRACKET) {
                     /*
                      * If there is a Multiple Delimiter like this “//[delim1][delim2]\n”
-                     * 
+                     *
                      * @param Delimter_2 holds the Second Delimiter Value
                      */
                     String Delimiter_2 = testString.substring(openedBracket + 1, customDelimiterEnd - 1);
@@ -54,17 +61,13 @@ public final class StringCalculator {
                 testString = testString.replace(testString, New_String);
 
             } else {
-                String Delimiter = testString.substring(customDelimiterStart, customDelimiterEnd);
-                String New_String = testString.substring(customDelimiterEnd + 1).replace(Delimiter, DEFAULT_DELIMITER);
                 testString = testString.replace(testString, New_String);
             }
-
         }
 
         String[] part = testString.split("[\n,]");
 
         for (int i = 0; i < part.length; i++) {
-
             if (Integer.parseInt(part[i]) < 0) {
                 /*
                  * If the Integer is negative then it will increment the negativeCount
@@ -82,16 +85,17 @@ public final class StringCalculator {
 
         if (negativeCount == 1) {
             /*
-             * if one Integer is Negative then it will Throw exception
+             * @throws IllegalArgumentException if one Integer is Negative then it will
+             * Throw exception
              */
             throw new IllegalArgumentException(NEGATIVE_EXCEPTION);
 
         } else if (negativeCount > 1) {
             /*
-             * if more than one Integer is Negative then it will show all the integer in
-             * exception message
+             * @throws IllegalArgumentException if more than one Integer is Negative then it
+             * will show all the integer in exception message
              */
-            throw new IllegalArgumentException(testString); // if whole number is -ve
+            throw new IllegalArgumentException(testString);
         }
 
         return count;
