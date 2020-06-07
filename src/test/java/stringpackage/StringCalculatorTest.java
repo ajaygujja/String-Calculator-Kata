@@ -36,6 +36,13 @@ class StringCalculatorTest {
     @Test
     void testWithManyNumber() {
         assertEquals(15, stringCalculator.Add("1,2,3,4,5"));
+        assertEquals(20, stringCalculator.Add("1,7,3,4,5"));
+    }
+
+    @Test
+    void testWithNewLineNumbers() {
+        assertEquals(6, stringCalculator.Add("1\n2,3"));
+        assertEquals(8, stringCalculator.Add("1,4\n3"));
     }
 
 }

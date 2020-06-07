@@ -12,7 +12,7 @@ public final class StringCalculator {
             return Integer.parseInt(testString);
         }
 
-        String[] part = testString.split(",");
+        String[] part = testString.split("[\n,]");
 
         for (int i = 0; i < part.length; i++) {
             count += Integer.parseInt(part[i]);
