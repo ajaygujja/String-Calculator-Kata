@@ -60,4 +60,15 @@ class StringCalculatorTest {
         assertEquals("negatives not allowed", exception.getMessage());
     }
 
+    @Test
+    void testWithManyNegative() {
+        Throwable exception = assertThrows(IllegalArgumentException.class, new Executable() {
+            @Override
+            public void execute() throws Throwable {
+                stringCalculator.Add("-1,-2,-4");
+            }
+        });
+        assertEquals("-1,-2,-4", exception.getMessage());
+    }
+
 }

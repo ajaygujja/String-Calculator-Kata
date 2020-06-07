@@ -6,6 +6,7 @@ public final class StringCalculator {
 
     public int Add(String testString) {
         int count = 0;
+        int negativeCount = 0;
         int LengthofString = testString.length();
 
         if (LengthofString == 0) {
@@ -20,14 +21,29 @@ public final class StringCalculator {
 
             if (Integer.parseInt(part[i]) < 0) {
                 /*
-                 * If the Number is negative it will throw Exception
+                 * If the Integer is negative then it will increment the negativeCount
                  */
-                throw new IllegalArgumentException(NEGATIVE_EXCEPTION);
+                negativeCount += 1;
             } else {
                 count += Integer.parseInt(part[i]);
             }
 
         }
+
+        if (negativeCount == 1) {
+            /*
+             * if one Integer is Negative then it will Throw exception
+             */
+            throw new IllegalArgumentException(NEGATIVE_EXCEPTION);
+
+        } else if (negativeCount > 1) {
+            /*
+             * if more than one Integer is Negative then it will show all the integer in
+             * exception message
+             */
+            throw new IllegalArgumentException(testString); // if whole number is -ve
+        }
+
         return count;
     }
 }
