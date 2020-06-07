@@ -24,6 +24,10 @@ public final class StringCalculator {
                  * If the Integer is negative then it will increment the negativeCount
                  */
                 negativeCount += 1;
+            } else if (Integer.parseInt(part[i]) > 1000) {
+                /* ignore Integer which more than 1000 */
+                continue;
+
             } else {
                 count += Integer.parseInt(part[i]);
             }

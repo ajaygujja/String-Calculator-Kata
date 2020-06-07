@@ -71,4 +71,9 @@ class StringCalculatorTest {
         assertEquals("-1,-2,-4", exception.getMessage());
     }
 
+    @Test
+    void testwithGreaterthan1000() {
+        assertEquals(2, stringCalculator.Add("2,1001"));
+    }
+
 }
