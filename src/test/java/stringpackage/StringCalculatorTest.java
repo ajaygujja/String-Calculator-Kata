@@ -82,4 +82,10 @@ class StringCalculatorTest {
         System.out.println(stringCalculator.GetCalledCount());
     }
 
+    @Test
+    void testwithSingleDelimiter() {
+        assertEquals(3, stringCalculator.Add("//;\n1;2"));
+        assertEquals(3, stringCalculator.Add("//#\n1#2"));
+    }
+
 }

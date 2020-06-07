@@ -2,6 +2,9 @@ package stringpackage;
 
 public final class StringCalculator {
 
+    private static final String DEFAULT_DELIMITER = ",";
+    private static final String DELIMITER_PREFIX = "/";
+    private static final String DELIMITER_SUFFIX = "\n";
     private static final String NEGATIVE_EXCEPTION = "negatives not allowed";
     private static int involedMethod = 0;
 
@@ -15,6 +18,20 @@ public final class StringCalculator {
             return LengthofString;
         } else if (LengthofString == 1) {
             return Integer.parseInt(testString);
+        }
+
+        if (testString.startsWith("/")) {
+            /*
+             * @param Delimiter: Stores the delimiter in a string
+             *
+             * @param New_String: stores the new string which doesnt have a Delimiter
+             */
+            int customDelimiterStart = testString.lastIndexOf(DELIMITER_PREFIX) + 1;
+            int customDelimiterEnd = testString.indexOf(DELIMITER_SUFFIX);
+            String Delimiter = testString.substring(customDelimiterStart, customDelimiterEnd);
+
+            String New_String = testString.substring(customDelimiterEnd + 1).replace(Delimiter, DEFAULT_DELIMITER);
+            testString = testString.replace(testString, New_String);
         }
 
         String[] part = testString.split("[\n,]");
@@ -54,6 +71,9 @@ public final class StringCalculator {
     }
 
     public int GetCalledCount() {
+        /*
+         * Returns how many times Add() is invoked.
+         */
         return involedMethod;
     }
 }
