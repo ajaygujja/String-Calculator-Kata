@@ -17,19 +17,25 @@ class StringCalculatorTest {
 
     @Test
     void testWithSpace() {
-        assertEquals(0, stringCalculator.add(""));
+        assertEquals(0, stringCalculator.Add(""));
     }
 
     @Test
     void testWithOneNumber() {
-        assertEquals(1, stringCalculator.add("1"));
-        assertEquals(5, stringCalculator.add("5"));
+        assertEquals(1, stringCalculator.Add("1"));
+        assertEquals(5, stringCalculator.Add("5"));
     }
 
     @Test
     void testWithTwoNumbers() {
-        assertEquals(3, stringCalculator.add("1,2"));
-        assertEquals(8, stringCalculator.add("5,3"));
-        assertEquals(10, stringCalculator.add("5,5"));
+        assertEquals(3, stringCalculator.Add("1,2"));
+        assertEquals(8, stringCalculator.Add("5,3"));
+        assertEquals(10, stringCalculator.Add("5,5"));
     }
+
+    @Test
+    void testWithManyNumber() {
+        assertEquals(15, stringCalculator.Add("1,2,3,4,5"));
+    }
+
 }

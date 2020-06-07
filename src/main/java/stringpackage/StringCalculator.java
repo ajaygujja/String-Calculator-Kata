@@ -2,7 +2,7 @@ package stringpackage;
 
 public final class StringCalculator {
 
-    public int add(String testString) {
+    public int Add(String testString) {
         int count = 0;
         int LengthofString = testString.length();
 
