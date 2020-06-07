@@ -1,8 +1,10 @@
 package stringpackage;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeEach;
 
@@ -43,6 +45,19 @@ class StringCalculatorTest {
     void testWithNewLineNumbers() {
         assertEquals(6, stringCalculator.Add("1\n2,3"));
         assertEquals(8, stringCalculator.Add("1,4\n3"));
+    }
+
+    @Test
+    void testWithSingleNegative() {
+        Throwable exception = assertThrows(IllegalArgumentException.class, new Executable() {
+
+            @Override
+            public void execute() throws Throwable {
+                stringCalculator.Add("-2");
+            }
+
+        });
+        assertEquals("negatives not allowed", exception.getMessage());
     }
 
 }
