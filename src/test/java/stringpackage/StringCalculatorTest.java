@@ -88,4 +88,10 @@ class StringCalculatorTest {
         assertEquals(3, stringCalculator.Add("//#\n1#2"));
     }
 
+    @Test
+    void testwithCustomDelimiter() {
+        assertEquals(6, stringCalculator.Add("//[###]\n1###2###3"));
+        assertEquals(6, stringCalculator.Add("//[**]\n1**2**3"));
+    }
+
 }

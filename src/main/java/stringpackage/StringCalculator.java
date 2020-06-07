@@ -30,6 +30,11 @@ public final class StringCalculator {
             int customDelimiterEnd = testString.indexOf(DELIMITER_SUFFIX);
             String Delimiter = testString.substring(customDelimiterStart, customDelimiterEnd);
 
+            if (testString.contains("[")) {
+                Delimiter = testString.substring(customDelimiterStart + 1, testString.indexOf("]"));
+
+            }
+
             String New_String = testString.substring(customDelimiterEnd + 1).replace(Delimiter, DEFAULT_DELIMITER);
             testString = testString.replace(testString, New_String);
         }
